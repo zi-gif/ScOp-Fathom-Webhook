@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fathom Webhook Project</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background: #f7f7f8;
+        color: #111827;
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+      p {
+        margin: 0 0 16px;
+        font-size: 14px;
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .muted {
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fathom Webhook Project</h1>
+      <p class="muted">This page renders the current <code>README.md</code> from the deployment.</p>
+      <pre id="readme">Loading README...</pre>
+    </div>
+    <script>
+      async function loadReadme() {
+        try {
+          const response = await fetch("./README.md", { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error("README fetch failed");
+          }
+          const text = await response.text();
+          document.getElementById("readme").textContent = text;
+        } catch (err) {
+          document.getElementById("readme").textContent =
+            "README could not be loaded.\n\nOpen /README.md directly or check deployment files.";
+        }
+      }
+      loadReadme();
+    </script>
+  </body>
+</html>

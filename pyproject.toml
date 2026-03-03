@@ -1,0 +1,9 @@
+[project]
+name = "fathom-webhook"
+version = "0.1.0"
+description = "Fathom webhook endpoint on Vercel"
+requires-python = ">=3.12"
+dependencies = [
+  "google-api-python-client>=2.170.0",
+  "google-auth>=2.40.0",
+]
